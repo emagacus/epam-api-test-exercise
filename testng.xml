@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="regression" parallel = "tests" thread-count = "3">
+  
+    <test name="back-end-happy-path">
+        <classes>
+            <class name="com.jsonplaceholder.happyPathTests.CommentsTests" />
+            <class name="com.jsonplaceholder.happyPathTests.PostTests" />
+        </classes>
+    </test>
+    <test name="back-end-invalid-data">
+        <classes>
+            <class name="com.jsonplaceholder.invalidDataTests.CommentsNegative" />
+            <class name="com.jsonplaceholder.invalidDataTests.PostsNegative" />
+        </classes>
+    </test>
+    <test name="back-end-schema-validation">
+        <classes>
+            <class name="com.jsonplaceholder.schemaValidations.CommentsSchema" />
+            <class name="com.jsonplaceholder.schemaValidations.PostsSchema" />
+        </classes>
+    </test>
+</suite>
