@@ -2,13 +2,16 @@ package com.jsonplaceholder.happyPathTests;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.testng.annotations.Test;
-import com.jsonplaceholder.endpoints.Posts;
-import io.restassured.http.ContentType;
+
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static io.restassured.RestAssured.*;
+import org.testng.annotations.Test;
+
+import com.jsonplaceholder.endpoints.Posts;
+
+import static io.restassured.RestAssured.given;
+import io.restassured.http.ContentType;
 import runner.TestBase;
 
 public class PostTests extends TestBase {
@@ -31,7 +34,7 @@ public class PostTests extends TestBase {
     @Test
     public void createPost() {
 
-        Map<String, String> payload = new HashMap<String, String>();
+        Map<String, String> payload = new HashMap<>();
         payload.put("title", "Test title");
         payload.put("body", "Test body");
         payload.put("userId", env.getVariable("userId"));
@@ -44,7 +47,7 @@ public class PostTests extends TestBase {
     @Test
     public void editPost() {
 
-        Map<String, String> payload = new HashMap<String, String>();
+        Map<String, String> payload = new HashMap<>();
         payload.put("id", env.getVariable("postId"));
         payload.put("title", "new title");
         payload.put("body", "new body");
@@ -57,7 +60,7 @@ public class PostTests extends TestBase {
 
     @Test
     public void patchPost() {
-        Map<String, String> payload = new HashMap<String, String>();
+        Map<String, String> payload = new HashMap<>();
         payload.put("title", "Updated title");
         specification = given().contentType(ContentType.JSON).body(payload);
         Posts.patchPost(env.getVariable("postId"), specification).then().assertThat().statusCode(200)
